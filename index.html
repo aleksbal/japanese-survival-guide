@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Japanese Survival Guide — Offline Cheat Sheet</title>
+  <style>
+    :root {
+      --bg: #f7f7f5;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #b91c1c;
+      --accent-2: #2563eb;
+      --line: #e5e7eb;
+      --good: #065f46;
+      --shadow: 0 8px 28px rgba(0,0,0,0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: linear-gradient(180deg, #fafaf9 0%, #f5f5f4 100%);
+      line-height: 1.35;
+    }
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px;
+    }
+    .hero {
+      background: linear-gradient(135deg, #fff 0%, #fef2f2 100%);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+    .sub {
+      color: var(--muted);
+      margin: 0;
+    }
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .toolbar input {
+      flex: 1 1 260px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      font-size: 15px;
+    }
+    .toolbar button, .play-btn, .chip {
+      border: 1px solid var(--line);
+      background: white;
+      color: var(--text);
+      border-radius: 10px;
+      padding: 10px 12px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .toolbar button:hover, .play-btn:hover, .chip:hover { background: #f9fafb; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card {
+      grid-column: span 12;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    @media (min-width: 880px) {
+      .card.half { grid-column: span 6; }
+      .card.third { grid-column: span 4; }
+      .card.twothird { grid-column: span 8; }
+    }
+    h2 {
+      font-size: 20px;
+      margin: 0 0 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid #fee2e2;
+    }
+    h3 {
+      margin: 14px 0 8px;
+      font-size: 16px;
+      color: #111827;
+    }
+    .phrase {
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+    .jp {
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      color: #374151;
+      margin-top: 4px;
+    }
+    .ro {
+      font-size: 22px;
+      color: var(--accent-2);
+      margin-top: 4px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
+    .pronhint {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+    .reading-note {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      font-size: 14px;
+    }
+    .en {
+      font-size: 15px;
+      margin-top: 4px;
+    }
+    .note {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 6px;
+    }
+    .row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+    .play-btn {
+      padding: 6px 10px;
+      font-size: 13px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      text-align: left;
+      border-bottom: 1px solid var(--line);
+      padding: 8px 6px;
+      vertical-align: top;
+    }
+    th { background: #fafafa; }
+    .tiny {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .footer {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+      padding: 18px 8px 30px;
+    }
+    .badge {
+      display: inline-block;
+      font-size: 12px;
+      padding: 4px 8px;
+      background: #fef2f2;
+      color: var(--accent);
+      border-radius: 999px;
+      margin-bottom: 8px;
+      border: 1px solid #fecaca;
+    }
+    .good {
+      color: var(--good);
+      font-weight: 700;
+    }
+    .hide { display: none !important; }
+    .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+    .sticky-nav {
+      position: sticky; top: 0; z-index: 10; margin-bottom: 14px;
+      backdrop-filter: blur(6px);
+    }
+    .sticky-nav .card { padding: 10px 12px; }
+    .jump a {
+      text-decoration: none; color: var(--accent-2); margin-right: 10px; white-space: nowrap;
+      font-size: 14px;
+    }
+    .pron {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px;
+    }
+    .pron .phrase { margin-bottom: 0; }
+    @media print {
+      body { background: white; }
+      .toolbar, .sticky-nav, .play-btn { display: none !important; }
+      .card, .hero { box-shadow: none; }
+      a { color: black; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="badge">Offline-ready single HTML file</div>
+      <h1>Japanese Survival Guide</h1>
+      <p class="sub">Compact flight cheat sheet for Japan — essential phrases, numbers, pronunciation, mini grammar, food, transport, and quick audio. The ▶ buttons use your browser’s built-in speech and may work offline if a Japanese voice is installed.</p>
+      <div class="toolbar">
+        <input id="search" type="text" placeholder="Search English, romaji, or Japanese…" />
+        <button onclick="window.print()">Print / Save PDF</button>
+        <button onclick="toggleRomaji()">Show/Hide Romaji</button>
+        <button onclick="toggleJapanese()">Show/Hide Japanese</button>
+        <button onclick="toggleNotes()">Show/Hide Notes</button>
+      </div>
+      <div class="reading-note"><strong>How to use this:</strong> read the <strong>blue romaji line first</strong>. The Japanese line stays underneath only for pointing, matching signs, or showing locals.</div>
+    </section>
+
+    <div class="sticky-nav">
+      <div class="card jump">
+        <a href="#essentials">Essentials</a>
+        <a href="#numbers">Numbers</a>
+        <a href="#grammar">Mini Grammar</a>
+        <a href="#food">Food</a>
+        <a href="#transport">Transport</a>
+        <a href="#shopping">Shopping</a>
+        <a href="#emergency">Emergency</a>
+        <a href="#pronunciation">Pronunciation</a>
+      </div>
+    </div>
+
+    <div class="grid" id="content">
+      <section class="card twothird" id="essentials" data-search="essentials basic phrases greetings thank you sorry please">
+        <h2>Essentials</h2>
+
+        <div class="phrase" data-search="hello konnichiwa こんにちは good afternoon">
+          <div class="jp">こんにちは</div>
+          <div class="ro">konnichiwa</div>
+          <div class="en">Hello / Good afternoon</div>
+          <div class="row"><button class="play-btn" onclick="speak('こんにちは')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="good morning ohayou gozaimasu おはようございます">
+          <div class="jp">おはようございます</div>
+          <div class="ro">ohayō gozaimasu</div>
+          <div class="en">Good morning</div>
+          <div class="row"><button class="play-btn" onclick="speak('おはようございます')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="good evening konbanwa こんばんは">
+          <div class="jp">こんばんは</div>
+          <div class="ro">konbanwa</div>
+          <div class="en">Good evening</div>
+          <div class="row"><button class="play-btn" onclick="speak('こんばんは')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="thank you arigatou gozaimasu ありがとうございます">
+          <div class="jp">ありがとうございます</div>
+          <div class="ro">arigatō gozaimasu</div>
+          <div class="en">Thank you very much</div>
+          <div class="note">Safe default. Polite and useful everywhere.</div>
+          <div class="row"><button class="play-btn" onclick="speak('ありがとうございます')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="excuse me sumimasen すみません sorry">
+          <div class="jp">すみません</div>
+          <div class="ro">sumimasen</div>
+          <div class="en">Excuse me / Sorry / Getting someone’s attention</div>
+          <div class="note">One of the most useful words in Japan.</div>
+          <div class="row"><button class="play-btn" onclick="speak('すみません')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="please onegaishimasu お願いします">
+          <div class="jp">お願いします</div>
+          <div class="ro">onegaishimasu</div>
+          <div class="en">Please / I’d like to ask for this</div>
+          <div class="row"><button class="play-btn" onclick="speak('お願いします')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="my name is watashi no namae wa です 私の名前は">
+          <div class="jp">私の名前は アレクサンダル です。</div>
+          <div class="ro">watashi no namae wa Arekusandaru desu.</div>
+          <div class="en">My name is Aleksandar.</div>
+          <div class="note">You can just say: <span class="good">アレクサンダルです</span> / “Arekusandaru desu.”</div>
+          <div class="row"><button class="play-btn" onclick="speak('私の名前は アレクサンダル です')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="i am from germany doitsu kara kimashita ドイツから来ました">
+          <div class="jp">ドイツから来ました。</div>
+          <div class="ro">Doitsu kara kimashita.</div>
+          <div class="en">I’m from Germany.</div>
+          <div class="row"><button class="play-btn" onclick="speak('ドイツから来ました')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="do you speak english eigo ga hanasemasu ka 英語が話せますか">
+          <div class="jp">英語が話せますか。</div>
+          <div class="ro">Eigo ga hanasemasu ka?</div>
+          <div class="en">Do you speak English?</div>
+          <div class="row"><button class="play-btn" onclick="speak('英語が話せますか')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="i don't understand wakarimasen わかりません">
+          <div class="jp">わかりません。</div>
+          <div class="ro">wakarimasen.</div>
+          <div class="en">I don’t understand.</div>
+          <div class="row"><button class="play-btn" onclick="speak('わかりません')">▶ Play</button></div>
+        </div>
+
+        <div class="phrase" data-search="please speak slowly yukkuri onegaishimasu ゆっくりお願いします">
+          <div class="jp">ゆっくりお願いします。</div>
+          <div class="ro">yukkuri onegaishimasu.</div>
+          <div class="en">Please speak slowly.</div>
+          <div class="row"><button class="play-btn" onclick="speak('ゆっくりお願いします')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card third" id="numbers" data-search="numbers counting price time money">
+        <h2>Numbers & Money</h2>
+        <table>
+          <tr><th>Number</th><th>Japanese</th><th>Romaji</th></tr>
+          <tr><td>1</td><td>一</td><td>ichi</td></tr>
+          <tr><td>2</td><td>二</td><td>ni</td></tr>
+          <tr><td>3</td><td>三</td><td>san</td></tr>
+          <tr><td>4</td><td>四</td><td>yon / shi</td></tr>
+          <tr><td>5</td><td>五</td><td>go</td></tr>
+          <tr><td>6</td><td>六</td><td>roku</td></tr>
+          <tr><td>7</td><td>七</td><td>nana / shichi</td></tr>
+          <tr><td>8</td><td>八</td><td>hachi</td></tr>
+          <tr><td>9</td><td>九</td><td>kyū / ku</td></tr>
+          <tr><td>10</td><td>十</td><td>jū</td></tr>
+          <tr><td>100</td><td>百</td><td>hyaku</td></tr>
+          <tr><td>1,000</td><td>千</td><td>sen</td></tr>
+          <tr><td>10,000</td><td>万</td><td>man</td></tr>
+        </table>
+        <div class="phrase" data-search="how much ikura desu ka いくらですか">
+          <div class="jp">いくらですか。</div>
+          <div class="ro">ikura desu ka?</div>
+          <div class="en">How much is it?</div>
+          <div class="row"><button class="play-btn" onclick="speak('いくらですか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="cash genkin 現金 credit card cardo creditto kaado">
+          <div class="jp">現金</div>
+          <div class="ro">genkin</div>
+          <div class="en">Cash</div>
+          <div class="jp" style="font-size:18px;margin-top:8px;">クレジットカードは使えますか。</div>
+          <div class="ro">kurejitto kādo wa tsukaemasu ka?</div>
+          <div class="en">Can I use a credit card?</div>
+          <div class="row"><button class="play-btn" onclick="speak('クレジットカードは使えますか')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card half" id="grammar" data-search="basic grammar particles wa ga o no ni de desu ka">
+        <h2>Mini Grammar</h2>
+        <table>
+          <tr><th>Pattern</th><th>Meaning</th><th>Example</th></tr>
+          <tr><td>…です</td><td>is / am / polite ending</td><td>ビールです = It’s beer.</td></tr>
+          <tr><td>…ですか</td><td>question</td><td>水ですか = Is it water?</td></tr>
+          <tr><td>は (wa)</td><td>topic marker</td><td>これは = as for this…</td></tr>
+          <tr><td>の</td><td>of / belonging to</td><td>私の名前 = my name</td></tr>
+          <tr><td>を</td><td>object marker</td><td>これをください = this, please</td></tr>
+          <tr><td>に / へ</td><td>to / toward</td><td>東京に行きます = go to Tokyo</td></tr>
+          <tr><td>で</td><td>at / by / with</td><td>カードで = by card</td></tr>
+        </table>
+        <div class="chips">
+          <div class="chip">A は B です = A is B</div>
+          <div class="chip">これは何ですか = What is this?</div>
+          <div class="chip">X をください = Please give me X</div>
+          <div class="chip">X はありますか = Do you have X?</div>
+        </div>
+      </section>
+
+      <section class="card half" data-search="sentence building useful patterns">
+        <h2>Very Useful Patterns</h2>
+        <div class="phrase" data-search="this please kore o kudasai これをください">
+          <div class="jp">これをください。</div>
+          <div class="ro">kore o kudasai.</div>
+          <div class="en">This one, please.</div>
+          <div class="row"><button class="play-btn" onclick="speak('これをください')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="do you have arimasu ka ありますか">
+          <div class="jp">ありますか。</div>
+          <div class="ro">arimasu ka?</div>
+          <div class="en">Do you have it? / Is there…?</div>
+          <div class="row"><button class="play-btn" onclick="speak('ありますか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="where is doko desu ka どこですか">
+          <div class="jp">どこですか。</div>
+          <div class="ro">doko desu ka?</div>
+          <div class="en">Where is it?</div>
+          <div class="row"><button class="play-btn" onclick="speak('どこですか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="what is this kore wa nan desu ka これは何ですか">
+          <div class="jp">これは何ですか。</div>
+          <div class="ro">kore wa nan desu ka?</div>
+          <div class="en">What is this?</div>
+          <div class="row"><button class="play-btn" onclick="speak('これは何ですか')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card half" id="food" data-search="food restaurant vegetarian allergy water beer menu">
+        <h2>Food & Restaurant</h2>
+        <div class="phrase" data-search="menu onegaishimasu menu please メニューお願いします">
+          <div class="jp">メニューをお願いします。</div>
+          <div class="ro">menyū o onegaishimasu.</div>
+          <div class="en">Menu, please.</div>
+          <div class="row"><button class="play-btn" onclick="speak('メニューをお願いします')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="water mizu kudasai 水をください">
+          <div class="jp">水をください。</div>
+          <div class="ro">mizu o kudasai.</div>
+          <div class="en">Water, please.</div>
+          <div class="row"><button class="play-btn" onclick="speak('水をください')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="beer biiru kudasai ビールをください">
+          <div class="jp">ビールをください。</div>
+          <div class="ro">bīru o kudasai.</div>
+          <div class="en">Beer, please.</div>
+          <div class="row"><button class="play-btn" onclick="speak('ビールをください')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="no meat niku wa tabemasen 肉は食べません vegetarian">
+          <div class="jp">肉は食べません。</div>
+          <div class="ro">niku wa tabemasen.</div>
+          <div class="en">I don’t eat meat.</div>
+          <div class="row"><button class="play-btn" onclick="speak('肉は食べません')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="allergy arerugii ga arimasu アレルギーがあります">
+          <div class="jp">アレルギーがあります。</div>
+          <div class="ro">arerugī ga arimasu.</div>
+          <div class="en">I have an allergy.</div>
+          <div class="row"><button class="play-btn" onclick="speak('アレルギーがあります')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card half" id="transport" data-search="transport train station ticket suica pasmo airport tokyo">
+        <h2>Transport</h2>
+        <div class="phrase" data-search="station eki wa doko desu ka 駅はどこですか">
+          <div class="jp">駅はどこですか。</div>
+          <div class="ro">eki wa doko desu ka?</div>
+          <div class="en">Where is the station?</div>
+          <div class="row"><button class="play-btn" onclick="speak('駅はどこですか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="ticket kippu 切符 onegaishimasu">
+          <div class="jp">切符をお願いします。</div>
+          <div class="ro">kippu o onegaishimasu.</div>
+          <div class="en">A ticket, please.</div>
+          <div class="row"><button class="play-btn" onclick="speak('切符をお願いします')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="where is platform noriba wa doko desu ka 乗り場はどこですか">
+          <div class="jp">乗り場はどこですか。</div>
+          <div class="ro">noriba wa doko desu ka?</div>
+          <div class="en">Where is the platform?</div>
+          <div class="row"><button class="play-btn" onclick="speak('乗り場はどこですか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="to tokyo ikimasu ka 東京に行きますか">
+          <div class="jp">東京に行きますか。</div>
+          <div class="ro">Tōkyō ni ikimasu ka?</div>
+          <div class="en">Does this go to Tokyo?</div>
+          <div class="row"><button class="play-btn" onclick="speak('東京に行きますか')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card half" id="shopping" data-search="shopping souvenir tax free size color price">
+        <h2>Shopping</h2>
+        <div class="phrase" data-search="how much ikura desu ka price">
+          <div class="jp">いくらですか。</div>
+          <div class="ro">ikura desu ka?</div>
+          <div class="en">How much is it?</div>
+          <div class="row"><button class="play-btn" onclick="speak('いくらですか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="a little expensive sukoshi takai desu すこし高いです">
+          <div class="jp">すこし高いです。</div>
+          <div class="ro">sukoshi takai desu.</div>
+          <div class="en">It’s a little expensive.</div>
+          <div class="row"><button class="play-btn" onclick="speak('すこし高いです')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="do you have another size betsu no saizu wa arimasu ka 別のサイズ">
+          <div class="jp">別のサイズはありますか。</div>
+          <div class="ro">betsu no saizu wa arimasu ka?</div>
+          <div class="en">Do you have another size?</div>
+          <div class="row"><button class="play-btn" onclick="speak('別のサイズはありますか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="tax free menzei 免税">
+          <div class="jp">免税はありますか。</div>
+          <div class="ro">menzei wa arimasu ka?</div>
+          <div class="en">Is tax-free available?</div>
+          <div class="row"><button class="play-btn" onclick="speak('免税はありますか')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card half" id="emergency" data-search="emergency help police hospital doctor medicine lost phone">
+        <h2>Emergency / Problems</h2>
+        <div class="phrase" data-search="help tasukete 助けて">
+          <div class="jp">助けてください。</div>
+          <div class="ro">tasukete kudasai.</div>
+          <div class="en">Please help me.</div>
+          <div class="row"><button class="play-btn" onclick="speak('助けてください')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="police kouban police box koban 交番">
+          <div class="jp">交番はどこですか。</div>
+          <div class="ro">kōban wa doko desu ka?</div>
+          <div class="en">Where is the police box?</div>
+          <div class="note">A <strong>kōban</strong> is a small local police station.</div>
+          <div class="row"><button class="play-btn" onclick="speak('交番はどこですか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="hospital byouin 病院 doctor 医者">
+          <div class="jp">病院はどこですか。</div>
+          <div class="ro">byōin wa doko desu ka?</div>
+          <div class="en">Where is the hospital?</div>
+          <div class="row"><button class="play-btn" onclick="speak('病院はどこですか')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="i am sick kibun ga warui desu 気分が悪いです">
+          <div class="jp">気分が悪いです。</div>
+          <div class="ro">kibun ga warui desu.</div>
+          <div class="en">I feel sick.</div>
+          <div class="row"><button class="play-btn" onclick="speak('気分が悪いです')">▶ Play</button></div>
+        </div>
+        <div class="phrase" data-search="I lost my phone denwa o nakushimashita 電話をなくしました">
+          <div class="jp">電話をなくしました。</div>
+          <div class="ro">denwa o nakushimashita.</div>
+          <div class="en">I lost my phone.</div>
+          <div class="row"><button class="play-btn" onclick="speak('電話をなくしました')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card twothird" data-search="mini dialogues examples">
+        <h2>Mini Dialogues</h2>
+        <div class="phrase">
+          <div class="en"><strong>Restaurant:</strong></div>
+          <div class="jp">すみません。メニューをお願いします。</div>
+          <div class="ro">Sumimasen. Menyū o onegaishimasu.</div>
+          <div class="en">Excuse me. Menu, please.</div>
+          <div class="jp" style="font-size:18px;margin-top:8px;">これをください。水もお願いします。</div>
+          <div class="ro">Kore o kudasai. Mizu mo onegaishimasu.</div>
+          <div class="en">This one, please. Water too, please.</div>
+          <div class="row"><button class="play-btn" onclick="speak('すみません。メニューをお願いします。これをください。水もお願いします。')">▶ Play</button></div>
+        </div>
+        <div class="phrase">
+          <div class="en"><strong>Station:</strong></div>
+          <div class="jp">すみません。東京駅はどこですか。</div>
+          <div class="ro">Sumimasen. Tōkyō-eki wa doko desu ka?</div>
+          <div class="en">Excuse me. Where is Tokyo Station?</div>
+          <div class="jp" style="font-size:18px;margin-top:8px;">この電車は新宿に行きますか。</div>
+          <div class="ro">Kono densha wa Shinjuku ni ikimasu ka?</div>
+          <div class="en">Does this train go to Shinjuku?</div>
+          <div class="row"><button class="play-btn" onclick="speak('すみません。東京駅はどこですか。この電車は新宿に行きますか。')">▶ Play</button></div>
+        </div>
+      </section>
+
+      <section class="card third" id="pronunciation" data-search="pronunciation sounds guide romaji japanese vowels">
+        <h2>Pronunciation</h2>
+        <div class="pron">
+          <div class="phrase">
+            <div class="en"><strong>Vowels</strong></div>
+            <div class="ro">a = ah, i = ee, u = oo, e = eh, o = oh</div>
+            <div class="pronhint">Examples: ka = kah, su = soo, ne = neh, to = toh</div>
+          </div>
+          <div class="phrase">
+            <div class="en"><strong>R</strong></div>
+            <div class="ro">Between English r/l/d. Very light.</div>
+          </div>
+          <div class="phrase">
+            <div class="en"><strong>Double consonant</strong></div>
+            <div class="ro">Small pause: kitte = “kit-te”</div>
+          </div>
+          <div class="phrase">
+            <div class="en"><strong>Long vowels</strong></div>
+            <div class="ro">ō / ū are held slightly longer.</div>
+          </div>
+          <div class="phrase">
+            <div class="en"><strong>u / desu</strong></div>
+            <div class="ro">Often very soft: desu ≈ dess</div>
+          </div>
+          <div class="phrase">
+            <div class="en"><strong>Polite safe ending</strong></div>
+            <div class="ro">…desu / …masu</div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:10px;">You do <strong>not</strong> need perfect pronunciation. Slow, polite, and clear works well.</div>
+      </section>
+
+      <section class="card third" data-search="quick words useful nouns yes no toilet entrance exit hotel">
+        <h2>Useful Single Words</h2>
+        <table>
+          <tr><th>Japanese</th><th>Romaji</th><th>Meaning</th></tr>
+          <tr><td>はい</td><td>hai</td><td>yes</td></tr>
+          <tr><td>いいえ</td><td>iie</td><td>no</td></tr>
+          <tr><td>トイレ</td><td>toire</td><td>toilet</td></tr>
+          <tr><td>入口</td><td>iriguchi</td><td>entrance</td></tr>
+          <tr><td>出口</td><td>deguchi</td><td>exit</td></tr>
+          <tr><td>ホテル</td><td>hoteru</td><td>hotel</td></tr>
+          <tr><td>駅</td><td>eki</td><td>station</td></tr>
+          <tr><td>空港</td><td>kūkō</td><td>airport</td></tr>
+          <tr><td>右</td><td>migi</td><td>right</td></tr>
+          <tr><td>左</td><td>hidari</td><td>left</td></tr>
+        </table>
+      </section>
+
+      <section class="card third" data-search="cultural notes etiquette">
+        <h2>Tiny Etiquette Notes</h2>
+        <ul>
+          <li>Polite default: <strong>sumimasen</strong> + <strong>onegaishimasu</strong> + <strong>arigatō gozaimasu</strong>.</li>
+          <li>Pointing at menu items is normal and practical.</li>
+          <li>Speak calmly; volume matters more than accent.</li>
+          <li>Cash still helps, though cards are common in many places.</li>
+          <li>Queueing and quiet public behavior matter.</li>
+        </ul>
+      </section>
+    </div>
+
+    <div class="footer">
+      Works fully as a local file. Audio depends on your device/browser speech engine and installed Japanese voice. A small status box appears when you tap play. Content is intentionally compact and travel-oriented.
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const phrases = Array.from(document.querySelectorAll('.phrase'));
+    const cards = Array.from(document.querySelectorAll('.card'));
+    let romajiVisible = true;
+    let japaneseVisible = true;
+    let notesVisible = true;
+
+    searchInput.addEventListener('input', function () {
+      const q = this.value.trim().toLowerCase();
+      phrases.forEach(p => {
+        const text = (p.innerText + ' ' + (p.dataset.search || '')).toLowerCase();
+        p.classList.toggle('hide', q && !text.includes(q));
+      });
+
+      cards.forEach(card => {
+        const visiblePhrases = card.querySelectorAll('.phrase:not(.hide)').length;
+        const tableText = (card.innerText + ' ' + (card.dataset.search || '')).toLowerCase();
+        const matchesCard = !q || tableText.includes(q);
+        if (card.querySelector('.phrase')) {
+          card.classList.toggle('hide', !matchesCard && visiblePhrases === 0);
+        } else {
+          card.classList.toggle('hide', !matchesCard);
+        }
+      });
+    });
+
+    function toggleRomaji() {
+      romajiVisible = !romajiVisible;
+      document.querySelectorAll('.ro').forEach(el => {
+        el.style.display = romajiVisible ? '' : 'none';
+      });
+    }
+
+    function toggleJapanese() {
+      japaneseVisible = !japaneseVisible;
+      document.querySelectorAll('.jp').forEach(el => {
+        el.style.display = japaneseVisible ? '' : 'none';
+      });
+    }
+
+    function toggleNotes() {
+      notesVisible = !notesVisible;
+      document.querySelectorAll('.note').forEach(el => {
+        el.style.display = notesVisible ? '' : 'none';
+      });
+    }
+
+    function pickJapaneseVoice() {
+      const voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+      return voices.find(v => /^ja(-|_)?/i.test(v.lang))
+        || voices.find(v => /japan/i.test(v.name))
+        || voices.find(v => /kyoko|otoya|haruka|sayaka|japanese/i.test(v.name))
+        || null;
+    }
+
+    function updateSpeechStatus(message, isError) {
+      let el = document.getElementById('speech-status');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'speech-status';
+        el.style.cssText = 'position:sticky;bottom:10px;z-index:9999;background:#fff;border:1px solid #d1d5db;border-radius:10px;padding:8px 10px;margin-top:10px;font-size:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);';
+        document.body.appendChild(el);
+      }
+      el.textContent = message;
+      el.style.borderColor = isError ? '#dc2626' : '#d1d5db';
+      el.style.color = isError ? '#991b1b' : '#374151';
+    }
+
+    function ensureVoicesLoaded() {
+      return new Promise(resolve => {
+        if (!('speechSynthesis' in window)) {
+          resolve([]);
+          return;
+        }
+        let voices = window.speechSynthesis.getVoices();
+        if (voices && voices.length) {
+          resolve(voices);
+          return;
+        }
+        const done = () => {
+          voices = window.speechSynthesis.getVoices();
+          resolve(voices || []);
+        };
+        window.speechSynthesis.onvoiceschanged = done;
+        setTimeout(done, 600);
+      });
+    }
+
+    window.speak = async function(text) {
+      if (!('speechSynthesis' in window) || typeof SpeechSynthesisUtterance === 'undefined') {
+        alert('Speech synthesis is not supported in this browser.');
+        return;
+      }
+      await ensureVoicesLoaded();
+      try {
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.resume();
+      } catch (e) {}
+
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.lang = 'ja-JP';
+      utter.rate = 0.9;
+      utter.pitch = 1.0;
+      const voice = pickJapaneseVoice();
+      if (voice) utter.voice = voice;
+
+      utter.onstart = () => updateSpeechStatus(voice ? ('Playing with voice: ' + voice.name) : 'Playing with browser default voice.');
+      utter.onerror = (event) => {
+        console.error('Speech error', event);
+        updateSpeechStatus('Speech failed. Install/enable a Japanese voice in your browser or OS.', true);
+      };
+      utter.onend = () => updateSpeechStatus('Ready. Tap any ▶ Play button.');
+
+      window.speechSynthesis.speak(utter);
+
+      setTimeout(() => {
+        if (!window.speechSynthesis.speaking) {
+          updateSpeechStatus('No speech started. Your browser may lack an offline Japanese voice.', true);
+        }
+      }, 300);
+    }
+
+
+    function simplePhonetic(text) {
+      return text
+        .toLowerCase()
+        .replace(/[.?!]/g, '')
+        .replace(/-/g, ' ')
+        .replace(/ō/g, 'oh')
+        .replace(/ū/g, 'oo')
+        .replace(/ā/g, 'ah')
+        .replace(/ē/g, 'eh')
+        .replace(/ī/g, 'ee')
+        .replace(/tsu/g, 'tsoo')
+        .replace(/shi/g, 'shee')
+        .replace(/chi/g, 'chee')
+        .replace(/fu/g, 'foo')
+        .replace(/ji/g, 'jee')
+        .replace(/ja/g, 'jah')
+        .replace(/ju/g, 'joo')
+        .replace(/jo/g, 'joh')
+        .replace(/\bdesu\b/g, 'dess')
+        .replace(/\bmasu\b/g, 'mahss')
+        .replace(/\bgozaimasu\b/g, 'go-zai-mahss')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    document.querySelectorAll('.ro').forEach(el => {
+      const txt = el.textContent.trim();
+      if (!txt) return;
+      const hint = document.createElement('div');
+      hint.className = 'pronhint';
+      hint.textContent = 'Sounds like: ' + simplePhonetic(txt);
+      el.insertAdjacentElement('afterend', hint);
+    });
+
+    if ('speechSynthesis' in window) {
+      speechSynthesis.onvoiceschanged = () => {};
+    }
+  </script>
+</body>
+</html>
